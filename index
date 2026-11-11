@@ -1,1 +1,593 @@
 
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>SOLAR - Plataforma</title>
+
+        <link rel="stylesheet" href="css/style.css">
+
+        <!-- Biblioteca de iconos -->
+        <script src="https://unpkg.com/lucide@latest"></script>
+
+        <script src="js/script.js" defer></script>
+    </head>
+
+    <body>
+
+        <header class="topbar">
+
+            <div class="top">
+
+                <!-- IZQUIERDA -->
+                <div class="left">
+
+                    <button class="menu-btn"
+                            id="menuBtn"
+                            type="button"
+                            aria-label="Abrir menú"
+                            aria-expanded="false"
+                            aria-controls="mainMenu">
+
+                        <i data-lucide="menu"></i>
+
+                    </button>
+
+                    <span class="logo">SOLAR</span>
+
+                </div>
+
+
+                <!-- NAVEGACION -->
+                <nav class="main-menu" id="mainMenu">
+
+                    <ul class="main-tab">
+
+                        <li class="tab-select">
+                            <a href="#inicio" class="nav-link" aria-current="page">
+                                <span class="header-name">Inicio</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#actividades" class="nav-link">
+                            
+                                <span class="header-name">Actividades</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#solicitudes" class="nav-link">
+                                <span class="header-name">Solicitudes</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#soluciones" class="nav-link">
+                                <span class="header-name">Soluciones</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#informes" class="nav-link">
+                                <span class="header-name">Informes</span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <!-- ICONOS DERECHA -->
+                <div class="right">
+
+                    <button class="icon-btn" type="button" title="Buscar"
+                            aria-label="Buscar">
+                        <i data-lucide="search"></i>
+                    </button>
+
+                    <button class="icon-btn" type="button" title="Herramientas"
+                            aria-label="Herramientas">
+                        <i data-lucide="wrench"></i>
+                    </button>
+
+                    <button class="icon-btn" type="button" title="Acciones"
+                            aria-label="Acciones">
+                        <i data-lucide="zap"></i>
+                    </button>
+
+                    <button class="icon-btn" type="button" title="Historial"
+                            aria-label="Historial">
+                        <i data-lucide="clock"></i>
+                    </button>
+
+                    <button class="icon-btn" type="button" title="Tareas"
+                            aria-label="Tareas">
+                        <i data-lucide="clipboard-list"></i>
+                    </button>
+
+                    <button class="icon-btn" type="button" title="Notificaciones"
+                            aria-label="Notificaciones">
+                        <i data-lucide="bell"></i>
+                    </button>
+
+                    <button class="icon-btn user-btn" type="button"
+                            title="Usuario" aria-label="Usuario">
+                        <i data-lucide="user-circle"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main class="contenido">
+
+
+            <!-- SECCION INICIO-->
+
+            <section class="module-section" id="moduleInicio">
+            
+                <h2>Inicio</h2>
+                <p>Bienvenido a la plataforma ABS.</p>
+                <p>Selecciona una opción del menú para comenzar.</p>
+
+            </section>
+
+            <!-- SECCION ACTIVIDADES-->
+            
+            <section class="activities module-section" id="moduleActividades" hidden>
+
+                <h2>Actividades</h2>
+                <div class="activities-header">
+                    
+                    <div class="activities-actions">
+
+                        <input
+
+                            type="search"
+                            id="filterInput"
+                            placeholder="Filtrar actividades..."
+                            aria-label="Buscar actividades"
+                        >
+
+                        <button type="button" id="createBtn" class="btn-primary">
+                            + Crear actividad
+                        </button>
+
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="activities-table">
+                        <thead>
+                            <tr>
+                                <th>Asunto</th>
+                                <th>Responsable</th>
+                                <th>Fecha de vencimiento</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="activitiesBody">
+                            <!-- JavaScript insertará aquí las actividades -->
+                        </tbody>
+                    </table>
+
+                    <p id="emptyMessage" class="empty-message" hidden>
+                        No se encontraron actividades.
+                    </p>
+                </div>
+
+            </section>
+
+
+            
+            <!-- MODULO SOLICITUDES -->
+
+            <section class="activities module-section"
+
+                id="moduleSolicitudes" hidden>
+                
+
+                <div class="activities-header">
+
+                    <h2>Solicitudes</h2>
+
+                    <div class="activities-actions">
+
+                        <input
+                            type="search"
+                            id="requestFilter"
+                            placeholder="Filtrar solicitudes..."
+                            aria-label="Buscar solicitudes"
+                        >
+
+                        <button type="button"
+                                id="createRequestBtn"
+                                class="btn-primary">
+                            + Crear solicitud
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- RESUMEN -->
+
+                <div class="request-summary">
+
+                    <div class="summary-card">
+                        <span>Total solicitudes</span>
+                        <strong id="totalRequests">0</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Abiertas</span>
+                        <strong id="openRequests">0</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Resueltas</span>
+                        <strong id="resolvedRequests">0</strong>
+                    </div>
+
+                </div>
+
+                <!-- TABLA -->
+
+                <div class="table-container">
+
+                    <table class="activities-table">
+
+                        <thead>
+                            <tr>
+                                <th>Asunto</th>
+                                <th>Solicitante</th>
+                                <th>Fecha</th>
+                                <th>Prioridad</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="requestsBody"></tbody>
+
+                    </table>
+
+                    <p id="emptyRequests" class="empty-message" hidden>
+                        No se encontraron solicitudes.
+                    </p>
+
+                </div>
+
+
+
+            </section>
+
+            <!-- FORMULARIO DE SOLICITUDES -->
+
+            <dialog id="requestDialog" class="activity-dialog">
+
+                <form id="requestForm">
+
+                    <div class="dialog-header">
+
+                        <h2 id="requestDialogTitle">
+                            Crear solicitud
+                        </h2>
+
+                        <button type="button"
+                                id="closeRequestDialog"
+                                class="close-btn">
+                            ×
+                        </button>
+
+                    </div>
+
+                    <label for="requestSubject">Asunto</label>
+
+                    <input
+                        type="text"
+                        id="requestSubject"
+                        required
+                        placeholder="Descripción de la solicitud"
+                    >
+
+                    <label for="requester">Solicitante</label>
+
+                    <input
+                        type="text"
+                        id="requester"
+                        required
+                        placeholder="Nombre del solicitante"
+                    >
+
+                    <label for="requestDate">Fecha de solicitud</label>
+
+                    <input
+                        type="date"
+                        id="requestDate"
+                        required
+                    >
+
+                    <label for="requestPriority">Prioridad</label>
+
+                    <select id="requestPriority">
+                        <option value="Baja">Baja</option>
+                        <option value="Media" selected>Media</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Urgente">Urgente</option>
+                    </select>
+
+                    <label for="requestStatus">Estado</label>
+
+                    <select id="requestStatus">
+                        <option value="Abierta">Abierta</option>
+                        <option value="En proceso">En proceso</option>
+                        <option value="Resuelta">Resuelta</option>
+                    </select>
+
+                    <div class="dialog-actions">
+
+                        <button type="button"
+                                id="cancelRequest"
+                                class="btn-secondary">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="btn-primary">
+                            Guardar solicitud
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </dialog>
+
+
+            <!-- MODULO SOLUCIONES -->
+            <section class="activities module-section" id="moduleSoluciones" hidden>
+
+                <div class="activities-header">
+                    <h2>Soluciones</h2>
+
+                    <div class="activities-actions">
+                        <input
+                            type="search"
+                            id="solutionFilter"
+                            placeholder="Filtrar soluciones..."
+                            aria-label="Buscar soluciones"
+                        >
+
+                        <button type="button" id="createSolutionBtn" class="btn-primary">
+                            + Crear solución
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="activities-table">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Descripción</th>
+                                <th>Responsable</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="solutionsBody"></tbody>
+                    </table>
+                </div>
+
+                <p id="emptySolutions" class="empty-message" hidden>
+                    No se encontraron soluciones.
+                </p>
+
+            </section>
+
+            <!-- =====================================
+                MODULO INFORMES
+            ===================================== -->
+
+            <section class="activities module-section"
+                    id="moduleInformes"
+                    hidden>
+
+                <div class="activities-header">
+                    <h2>Informes</h2>
+                </div>
+
+                <!-- TARJETAS DE RESUMEN -->
+                <div class="request-summary">
+
+                    <div class="summary-card">
+                        <span>Total actividades</span>
+                        <strong id="reportActivities">0</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Total solicitudes</span>
+                        <strong id="reportRequests">0</strong>
+                    </div>
+
+                    <div class="summary-card">
+                        <span>Total soluciones</span>
+                        <strong id="reportSolutions">0</strong>
+                    </div>
+
+                </div>
+
+                <!-- RESUMEN GENERAL -->
+                <div class="table-container">
+
+                    <h3>Resumen general de estados</h3>
+
+                    <table class="activities-table">
+
+                        <thead>
+                            <tr>
+                                <th>Módulo</th>
+                                <th>Pendientes</th>
+                                <th>En proceso</th>
+                                <th>Finalizadas</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="reportSummaryBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+        <!-- FORMULARIO PARA CREAR ACTIVIDADES -->
+        <dialog id="activityDialog" class="activity-dialog">
+
+            <form id="activityForm">
+
+                <div class="dialog-header">
+                    <h2>Crear actividad</h2>
+                    <button type="button" id="closeDialog" class="close-btn"
+                        aria-label="Cerrar">×</button>
+                </div>
+
+                <label for="subject">Asunto</label>
+                <input type="text" id="subject" required
+                    placeholder="Ej. Seguimiento de clientes">
+
+                <label for="responsible">Responsable</label>
+                <input type="text" id="responsible" required
+                    placeholder="Nombre del responsable">
+
+                <label for="dueDate">Fecha de vencimiento</label>
+                <input type="date" id="dueDate" required>
+
+                <label for="status">Estado</label>
+                <select id="status">
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Completada">Completada</option>
+                </select>
+
+                <div class="dialog-actions">
+                    <button type="button" id="cancelBtn" class="btn-secondary">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="btn-primary">
+                        Guardar actividad
+                    </button>
+                </div>
+
+            </form>
+
+        </dialog>
+
+        <!-- FORMULARIO DE SOLUCIONES -->
+
+        <dialog id="solutionDialog" class="activity-dialog">
+
+            <form id="solutionForm">
+
+                <div class="dialog-header">
+
+                    <h2 id="solutionDialogTitle">Crear solución</h2>
+
+                    <button type="button"
+                            id="closeSolutionDialog"
+                            class="close-btn"
+                            aria-label="Cerrar">
+                        ×
+                    </button>
+
+                </div>
+
+                <label for="solutionTitle">Título</label>
+
+                <input
+                    type="text"
+                    id="solutionTitle"
+                    required
+                    placeholder="Título de la solución"
+                >
+
+                <label for="solutionDescription">Descripción</label>
+
+                <input
+                    type="text"
+                    id="solutionDescription"
+                    required
+                    placeholder="Describe la solución"
+                >
+
+                <label for="solutionResponsible">Responsable</label>
+
+                <input
+                    type="text"
+                    id="solutionResponsible"
+                    required
+                    placeholder="Nombre del responsable"
+                >
+
+                <label for="solutionDate">Fecha de registro</label>
+
+                <input
+                    type="date"
+                    id="solutionDate"
+                    required
+                >
+
+                <label for="solutionStatus">Estado</label>
+
+                <select id="solutionStatus">
+
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Resuelta">Resuelta</option>
+
+                </select>
+
+                <div class="dialog-actions">
+
+                    <button type="button"
+                            id="cancelSolution"
+                            class="btn-secondary">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="btn-primary">
+                        Guardar solución
+                    </button>
+
+                </div>
+
+            </form>
+
+        </dialog>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>© 2026 ABS | Plataforma Administrativa SOLAR</p>
+        </footer>
+
+    </body>
+
+</html>
+
