@@ -1,1 +1,689 @@
 
+/* =====================================
+   1. VARIABLES
+===================================== */
+
+:root {
+    --header-height: 52px;
+    --header-bg: #ffffff;
+    --theme-color: #13aaa0;
+    --header-text: #263445;
+    --active-bg: #f2fafa;
+    --border-color: #e5e5e5;
+}
+
+
+/* =====================================
+   2. CONFIGURACION GENERAL
+===================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--header-text);
+
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =====================================
+   3. ENCABEZADO
+===================================== */
+
+.topbar {
+    width: 100%;
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+    z-index: 100;
+}
+
+.top {
+    min-height: var(--header-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+
+
+/* =====================================
+   4. IZQUIERDA Y LOGO
+===================================== */
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+    color: #333333;
+    letter-spacing: 1px;
+}
+
+
+/* BOTON MENU */
+
+.menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #555555;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.menu-btn svg {
+    width: 21px;
+    height: 21px;
+}
+
+
+/* =====================================
+   5. NAVEGACION
+===================================== */
+
+.main-menu {
+    display: flex;
+    align-items: stretch;
+    flex: 1;
+    min-width: 0;
+    margin-left: 15px;
+}
+
+.main-tab {
+    display: flex;
+    align-items: stretch;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-tab li a {
+    display: flex;
+    align-items: center;
+    height: var(--header-height);
+    padding: 0 15px;
+
+    color: var(--header-text);
+    text-decoration: none;
+    font-size: 14px;
+
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+
+    transition: background-color .2s ease;
+}
+
+.main-tab li a:hover {
+    background: #f5f7f8;
+}
+
+main {
+    flex: 1;
+}
+/* =====================================
+   6. PESTAÑA ACTIVA
+===================================== */
+
+.main-tab li.tab-select a {
+    color: var(--theme-color);
+    background: var(--active-bg);
+    border-bottom-color: var(--theme-color);
+    font-weight: 600;
+}
+
+
+/* =====================================
+   7. ICONOS DERECHA
+===================================== */
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.icon-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+    background: transparent;
+    color: #626d79;
+
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.icon-btn svg {
+    width: 19px;
+    height: 19px;
+    stroke-width: 1.8;
+}
+
+.icon-btn:hover,
+.menu-btn:hover {
+    background: #f2f4f5;
+}
+
+
+/* =====================================
+   8. CONTENIDO
+===================================== */
+
+.contenido {
+    padding: 25px;
+}
+
+
+/* =====================================
+   9. TABLET
+===================================== */
+
+@media screen and (max-width: 1050px) {
+
+    .main-menu {
+        margin-left: 5px;
+    }
+
+    .main-tab li a {
+        padding: 0 9px;
+        font-size: 13px;
+    }
+
+    .right {
+        gap: 1px;
+    }
+
+    .icon-btn {
+        width: 30px;
+    }
+
+}
+
+
+/* =====================================
+   10. MOVIL Y TABLET PEQUEÑA
+===================================== */
+
+@media screen and (max-width: 760px) {
+
+    .top {
+        height: 55px;
+        min-height: 55px;
+        padding: 0 10px;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    /* MENU DESPLEGABLE */
+
+    .main-menu {
+        display: none;
+
+        position: absolute;
+        top: 55px;
+        left: 0;
+
+        width: 100%;
+        margin: 0;
+
+        background: #ffffff;
+        border-top: 1px solid var(--border-color);
+
+        box-shadow: 0 5px 12px rgba(0,0,0,.10);
+    }
+
+    .main-menu.open {
+        display: block;
+    }
+
+    .main-tab {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .main-tab li a {
+        height: 46px;
+        padding: 0 20px;
+        border-bottom: 1px solid #eeeeee;
+        border-left: 3px solid transparent;
+    }
+
+    .main-tab li.tab-select a {
+        border-left-color: var(--theme-color);
+        border-bottom-color: #eeeeee;
+    }
+
+    /* ICONOS MOVILES */
+
+    .right {
+        gap: 2px;
+    }
+
+    .icon-btn {
+        width: 32px;
+        height: 34px;
+    }
+
+    /* OCULTAR ICONOS SECUNDARIOS */
+
+    .right .icon-btn:nth-child(2),
+    .right .icon-btn:nth-child(3),
+    .right .icon-btn:nth-child(4),
+    .right .icon-btn:nth-child(5) {
+        display: none;
+    }
+
+    .contenido {
+        padding: 15px;
+    }
+
+}
+
+
+/* =====================================
+   11. CELULARES PEQUEÑOS
+===================================== */
+
+@media screen and (max-width: 380px) {
+
+    .top {
+        padding: 0 5px;
+    }
+
+    .left {
+        gap: 5px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .right {
+        gap: 0;
+    }
+
+}
+
+/* ==============================
+   MODULO DE ACTIVIDADES
+============================== */
+
+.activities {
+    width: 100%;
+    padding: 25px;
+    font-family: Arial, sans-serif;
+}
+
+.activities-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.activities-header h2 {
+    margin: 0;
+    color: #263445;
+    font-size: 23px;
+}
+
+.activities-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.activities-actions input {
+    width: 230px;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #d9dfe5;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.btn-primary,
+.btn-secondary {
+    min-height: 38px;
+    padding: 0 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-primary {
+    color: white;
+    background: #13aaa0;
+}
+
+.btn-primary:hover {
+    background: #0d9189;
+}
+
+.btn-secondary {
+    color: #263445;
+    background: #edf0f2;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e5e8eb;
+    border-radius: 6px;
+}
+
+.activities-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 650px;
+}
+
+.activities-table th,
+.activities-table td {
+    padding: 14px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+    font-size: 14px;
+}
+
+.activities-table th {
+    color: #526171;
+    background: #f7f9fa;
+    font-weight: 600;
+}
+
+.activities-table td {
+    color: #354454;
+}
+
+.activities-table tbody tr:hover {
+    background: #f8fbfb;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-pending {
+    color: #946200;
+    background: #fff1cc;
+}
+
+.status-completed {
+    color: #187747;
+    background: #dff5e8;
+}
+
+.empty-message {
+    padding: 20px;
+    text-align: center;
+    color: #687582;
+}
+
+/* FORMULARIO */
+
+.activity-dialog {
+    width: min(450px, calc(100% - 30px));
+    padding: 25px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.activity-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.dialog-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #263445;
+}
+
+.close-btn {
+    border: none;
+    background: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #687582;
+}
+
+.activity-dialog label {
+    display: block;
+    margin: 13px 0 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #354454;
+}
+
+.activity-dialog input,
+.activity-dialog select {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    border: 1px solid #d9dfe5;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+    .activities {
+        padding: 18px 12px;
+    }
+
+    .activities-header {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .activities-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .activities-actions input {
+        width: 100%;
+    }
+
+    .activities-actions button {
+        width: 100%;
+    }
+}
+
+
+/* ACCIONES DE ACTIVIDADES */
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #dfe4e8;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.action-btn:hover {
+    background: #f0f8f8;
+    border-color: #13aaa0;
+}
+
+.edit-btn {
+    color: #168c85;
+}
+
+.delete-btn {
+    color: #d9534f;
+}
+
+.action-btn:focus-visible {
+    outline: 2px solid #13aaa0;
+    outline-offset: 2px;
+}
+
+
+
+/* =================================
+   MODULO SOLICITUDES
+================================= */
+
+.module-section[hidden] {
+    display: none !important;
+}
+
+.request-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+    margin-bottom: 22px;
+}
+
+.summary-card {
+    padding: 17px;
+    border: 1px solid #e5e8eb;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.summary-card span {
+    display: block;
+    color: #687582;
+    font-size: 13px;
+    margin-bottom: 8px;
+}
+
+.summary-card strong {
+    font-size: 25px;
+    color: #263445;
+}
+
+.priority,
+.request-status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-low {
+    color: #187747;
+    background: #dff5e8;
+}
+
+.priority-medium {
+    color: #946200;
+    background: #fff1cc;
+}
+
+.priority-high {
+    color: #bd5428;
+    background: #ffeadf;
+}
+
+.priority-urgent {
+    color: #b42318;
+    background: #fee4e2;
+}
+
+.request-open {
+    color: #245b9b;
+    background: #e5f0ff;
+}
+
+.request-progress {
+    color: #946200;
+    background: #fff1cc;
+}
+
+.request-resolved {
+    color: #187747;
+    background: #dff5e8;
+}
+
+/* RESPONSIVE SOLICITUDES */
+
+@media (max-width: 650px) {
+
+    .request-summary {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .summary-card {
+        padding: 13px;
+    }
+
+    .summary-card strong {
+        font-size: 21px;
+    }
+
+}
+
+
+/* FOOTER */
+
+.footer {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #1e293b;
+    color: #ffffff;
+    text-align: center;
+    font-size: 12px;
+}
+
+.footer p {
+    margin: 0;
+}
